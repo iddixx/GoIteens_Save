@@ -11,6 +11,7 @@ public class Save
     {
         public string Key;
         public Vector3 Position;
+        public Vector3 Scale;
         public Quaternion Rotation;
     }
 

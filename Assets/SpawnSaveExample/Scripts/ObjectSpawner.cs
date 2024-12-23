@@ -85,6 +85,7 @@ public class ObjectSpawner : MonoBehaviour
             SpawnedObjects.Add(new Entry(savedObject.Key, copy));
 
             copy.transform.localPosition = savedObject.Position;
+            copy.transform.localScale = savedObject.Scale;
             copy.transform.localRotation = savedObject.Rotation;
         }
     } 

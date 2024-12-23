@@ -41,6 +41,7 @@ public class SaveSystem : MonoBehaviour
                 {
                     Key = entry.Key,
                     Position = transform.localPosition,
+                    Scale = transform.localScale,
                     Rotation = transform.localRotation
                 };
             }).ToArray()
