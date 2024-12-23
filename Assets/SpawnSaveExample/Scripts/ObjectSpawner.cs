@@ -8,6 +8,8 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject[] Catalogue;
     public Dictionary<string, GameObject> ObjectsMap;
     public Vector3 SpawnDistance;
+    public bool KeepScaleInProportions = false; 
+    public Vector3 ScaleSize;
     public Vector3 SpawnCenter;
 
     public List<Entry> SpawnedObjects = new List<Entry>();
@@ -37,6 +39,7 @@ public class ObjectSpawner : MonoBehaviour
         SpawnedObjects.Add(new Entry(key, copy));
 
         copy.transform.localPosition = GetRandomPoint() + SpawnCenter;
+        copy.transform.localScale = GetRandomScale(KeepScaleInProportions);
         copy.transform.localRotation = Random.rotation;
     }
 
@@ -45,6 +48,24 @@ public class ObjectSpawner : MonoBehaviour
         float x = Random.Range(-SpawnDistance.x, SpawnDistance.x);
         float y = Random.Range(-SpawnDistance.y, SpawnDistance.y);
         float z = Random.Range(-SpawnDistance.z, SpawnDistance.z);
+
+        return new Vector3(x, y, z);
+    }
+
+    private Vector3 GetRandomScale(bool keepProportions)
+    {
+        float x = 0f, y = 0f, z = 0f;
+
+        if(keepProportions)
+        {
+            x = y = z = Random.Range(1f, ScaleSize.x);
+        }
+        else
+        {
+            x = Random.Range(1f, ScaleSize.x);
+            y = Random.Range(1f, ScaleSize.y);
+            z = Random.Range(1f, ScaleSize.z);
+        }
 
         return new Vector3(x, y, z);
     }
